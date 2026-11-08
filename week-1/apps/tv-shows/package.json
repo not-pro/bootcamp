@@ -12,7 +12,8 @@
     "@vitejs/plugin-react": "catalog:",
     "animejs": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "useQuery": "catalog:"
   },
   "devDependencies": {
     "@types/react": "catalog:",

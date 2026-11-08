@@ -33,7 +33,10 @@
   "devDependencies": {
     "@types/node": "^26.6.5",
     "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "jsdom": "catalog:",
     "react": "catalog:",
+    "react-dom": "catalog:",
     "typescript": "^7.0.2",
     "vite-plus": "catalog:"
   },
