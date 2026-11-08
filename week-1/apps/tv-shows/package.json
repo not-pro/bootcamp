@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vitejs/plugin-react": "catalog:",
+    "animejs": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
   },

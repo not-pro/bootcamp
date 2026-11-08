@@ -1,0 +1,42 @@
+.menu {
+  margin: 0;
+  position: fixed;
+  z-index: 5;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: auto;
+  padding: 8px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--color-surface);
+  box-shadow: 0 12px 28px #0006;
+}
+.menu[hidden] {
+  display: none;
+}
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.option:hover {
+  background: var(--color-surface-hover);
+}
+.option input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-accent);
+}
+.option input:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+@media (forced-colors: active) {
+  .option input:focus-visible {
+    outline-color: Highlight;
+  }
+}

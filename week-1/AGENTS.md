@@ -13,7 +13,7 @@
 
 ## Логика компонентов
 
-Всю логику компонента, включая создание функций, помещай в хук `usePresenter`. Например, `src/components/Card` содержит `Card.tsx`, `Card.module.css` и `usePresenter`:
+В `pages` и `components` всю логику компонента, включая создание функций, помещай в хук `usePresenter`. Например, `src/components/Card` содержит `Card.tsx`, `Card.module.css` и `usePresenter`:
 
 ```tsx
 function Card(props: CardProps) {
@@ -24,5 +24,9 @@ function Card(props: CardProps) {
 ```
 
 `usePresenter` может использовать любое количество хуков. Его интерфейс и аргументы проектируются для нужд самого presenter, а не компонента: компонент зависит от `usePresenter`, а не наоборот.
+
+В `ui-kit` не используй `usePresenter`: компонент управляет только представлением через React-хуки и обработчики. Стили — нативный CSS с CSS Modules.
+
+Логику компонентов в `ui-kit` и `components` дроби на хуки по смыслу: каждый хук отвечает за отдельную задачу или поведение. То же правило действует внутри `usePresenter`: он объединяет специализированные хуки, а не собирает всю логику в одном месте. Хуки конкретного компонента выноси в его поддиректорию `hooks`, например `components/Card/hooks/useCardFocus.ts`. Это относится и к `usePresenter`: размещай его в `hooks/usePresenter.ts` (или `.tsx`, если нужен JSX).
 
 Файлы `index.ts` и `index.tsx` разрешены только в `app`, в точке входа приложения. В остальных местах используй именованные файлы.
