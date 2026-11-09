@@ -25,4 +25,16 @@ export interface QueryResult<Data> {
   error: unknown;
 }
 
+export interface LazyQueryRequest<Data> {
+  options: QueryOptions<Data>;
+  executionCount: number;
+  resolve: (result: QueryResult<Data>) => void;
+}
+
+export type LazyQueryResult<Data> = [
+  execute: () => Promise<QueryResult<Data>>,
+  result: QueryResult<Data>,
+  cancel: () => void,
+];
+
 export type { QueryKey, CacheValue, CacheTTL, BaseUrl, Cache, Nullable };

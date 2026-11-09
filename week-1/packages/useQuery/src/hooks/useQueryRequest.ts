@@ -5,6 +5,7 @@ import { STORE } from "../store";
 export function useQueryRequest<Data = unknown>(
   { endpoint, queryKey, onError, onSuccess, fetchPolicy = "cache-first" }: QueryOptions<Data>,
   executionCount: number | null,
+  onSettled?: (result: QueryResult<Data>) => void,
 ): QueryResult<Data> {
   const apiUrl = `${STORE.getBaseUrl()}${endpoint}`;
   const cacheKey = JSON.stringify([queryKey, apiUrl]);
@@ -41,7 +42,10 @@ export function useQueryRequest<Data = unknown>(
           // oxlint-disable-next-line typescript/no-unsafe-type-assertion
           value = cache.get(cacheKey) as Data;
         } else {
-          if (fetchPolicy === "cache-only") return;
+          if (fetchPolicy === "cache-only") {
+            onSettled?.({ data: undefined, loading: false, error: null });
+            return;
+          }
           const response = await fetch(apiUrl, {
             method: "GET",
             cache: "no-store",
@@ -57,13 +61,17 @@ export function useQueryRequest<Data = unknown>(
         }
       } catch (reason: unknown) {
         if (controller.signal.aborted) return;
-        setResult({ data: undefined, loading: false, error: reason });
+        const failed = { data: undefined, loading: false, error: reason };
+        setResult(failed);
+        onSettled?.(failed);
         notifyError(reason);
         return;
       }
 
       if (controller.signal.aborted) return;
-      setResult({ data: value, loading: false, error: null });
+      const loaded = { data: value, loading: false, error: null };
+      setResult(loaded);
+      onSettled?.(loaded);
       notifySuccess(value);
     }
 
@@ -71,7 +79,7 @@ export function useQueryRequest<Data = unknown>(
     return () => {
       controller.abort();
     };
-  }, [apiUrl, cacheKey, fetchPolicy, executionCount]);
+  }, [apiUrl, cacheKey, fetchPolicy, executionCount, onSettled]);
 
   return result;
 }

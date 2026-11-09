@@ -6,6 +6,7 @@ import { GridList } from "../grid-list/GridList";
 import styles from "./GridViewport.module.css";
 
 interface Props {
+  disabled: boolean | undefined;
   className: string | undefined;
   label: string;
   isPending: boolean;
@@ -16,6 +17,7 @@ interface Props {
 }
 export function GridViewport({
   className,
+  disabled,
   label,
   items,
   pagination,
@@ -25,7 +27,7 @@ export function GridViewport({
 }: Props) {
   const instructionsId = useId();
   return (
-    <section className={`${styles["root"]} ${className ?? ""}`} aria-label={label}>
+    <section className={`${styles["root"]} ${className ?? ""}`} aria-label={label} inert={disabled}>
       <p id={instructionsId} className={styles["hint"]}>
         {pagination?.isLoading
           ? "Загрузка…"

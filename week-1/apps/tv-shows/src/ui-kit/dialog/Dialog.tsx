@@ -1,25 +1,15 @@
 import { useEffect, useId, useRef } from "react";
-import type { ReactNode } from "react";
+import type { DialogProps } from "./types";
 import styles from "./Dialog.module.css";
 
-/** Параметры управляемого модального окна. */
-export type DialogProps = {
-  /** Видимый заголовок h2 и доступное имя диалога. */
-  title: string;
-  /** Управляемая видимость: true вызывает showModal(), false — close(). */
-  open: boolean;
-  /** Нативное событие закрытия, включая Escape и кнопку ×; установите open=false. */
-  onClose: () => void;
-  /** Произвольное содержимое под заголовком. */
-  children: ReactNode;
-};
+export type { DialogProps } from "./types";
 
 /**
  * Нативный модальный dialog; браузер управляет фокусом и Escape.
  * @example
  * <Dialog title="Описание" open={open} onClose={closeDetails}>{details}</Dialog>
  */
-export function Dialog({ title, open, onClose, children }: DialogProps) {
+export function Dialog({ title, open, onClose, children, disabled }: DialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
 
@@ -34,12 +24,14 @@ export function Dialog({ title, open, onClose, children }: DialogProps) {
       <div className={styles["header"]}>
         <h2 id={titleId}>{title}</h2>
         <form method="dialog">
-          <button autoFocus aria-label="Закрыть описание">
+          <button disabled={disabled} autoFocus aria-label="Закрыть описание">
             ×
           </button>
         </form>
       </div>
-      <div className={styles["body"]}>{children}</div>
+      <div className={styles["body"]} inert={disabled}>
+        {children}
+      </div>
     </dialog>
   );
 }

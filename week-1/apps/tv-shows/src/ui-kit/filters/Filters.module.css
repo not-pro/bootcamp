@@ -34,7 +34,7 @@
   font: inherit;
   cursor: pointer;
 }
-.reset:hover {
+.reset:hover:not(:disabled) {
   background: var(--color-surface-hover);
 }
 .reset:focus-visible {
@@ -45,4 +45,8 @@
   .reset:focus-visible {
     outline-color: Highlight;
   }
+}
+.reset:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

@@ -9,6 +9,7 @@ export default defineConfig({
       "@app": fileURLToPath(new URL("./src/app", import.meta.url)),
       "@pages": fileURLToPath(new URL("./src/pages", import.meta.url)),
       "@components": fileURLToPath(new URL("./src/components", import.meta.url)),
+      "@hooks": fileURLToPath(new URL("./src/hooks", import.meta.url)),
       "@ui-kit": fileURLToPath(new URL("./src/ui-kit", import.meta.url)),
       "@config": fileURLToPath(new URL("./src/config", import.meta.url)),
       "@assets": fileURLToPath(new URL("./src/assets", import.meta.url)),

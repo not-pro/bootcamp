@@ -1,22 +1,18 @@
-import type { ReactNode } from "react";
+import type { AppLayoutProps } from "./types";
 import styles from "./AppLayout.module.css";
 
-/** Параметры корневого макета приложения. */
-export type AppLayoutProps = {
-  /** Содержимое единственной основной области страницы. */
-  children: ReactNode;
-};
+export type { AppLayoutProps } from "./types";
 
 /**
  * Корневой макет с темой и ссылкой перехода к main; размещайте один на страницу.
  * @example
  * <AppLayout><HomePage /></AppLayout>
  */
-export function AppLayout({ children }: AppLayoutProps) {
+export function AppLayout({ children, disabled }: AppLayoutProps) {
   const mainId = "main-content";
 
   return (
-    <div className={styles["layout"]}>
+    <div className={styles["layout"]} inert={disabled}>
       <a className={styles["skipLink"]} href={`#${mainId}`}>
         Перейти к сериалам
       </a>

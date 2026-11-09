@@ -8,7 +8,8 @@ import type {
   SetStateAction,
 } from "react";
 import type { MultiSelectProps } from "../types";
-import { focusInitial, moveFocus } from "../moveFocus";
+import { focusInitial } from "../focusInitial";
+import { moveFocus } from "../moveFocus";
 
 type Props = Pick<MultiSelectProps, "value" | "onChange"> & {
   open: boolean;

@@ -1,19 +1,7 @@
-import type { ComponentPropsWithoutRef, CSSProperties, ReactNode } from "react";
+import type { SkeletonProps } from "./types";
 import styles from "./Skeleton.module.css";
 
-/** Нативные props span (className, style и др.) плюс параметры заглушки. */
-export type SkeletonProps = Omit<ComponentPropsWithoutRef<"span">, "children"> & {
-  /** Показывать заглушку вместо children. По умолчанию true. */
-  isLoading?: boolean;
-  /** Содержимое после загрузки. При загрузке оно размонтируется. */
-  children?: ReactNode;
-  /** Ширина: число в px или CSS-значение. По умолчанию "100%". */
-  width?: CSSProperties["width"];
-  /** Высота: число в px или CSS-значение. По умолчанию "1em". */
-  height?: CSSProperties["height"];
-  /** Радиус: число в px или CSS-значение; "50%" для круга. По умолчанию 8. */
-  borderRadius?: CSSProperties["borderRadius"];
-};
+export type { SkeletonProps } from "./types";
 
 /**
  * Универсальная декоративная заглушка без запросов и собственного состояния.
@@ -33,6 +21,7 @@ export type SkeletonProps = Omit<ComponentPropsWithoutRef<"span">, "children"> &
  */
 export function Skeleton({
   isLoading = true,
+  disabled,
   children,
   width = "100%",
   height = "1em",
@@ -51,6 +40,7 @@ export function Skeleton({
       // oxlint-disable-next-line react-perf/jsx-no-new-object-as-prop
       style={{ width, height, borderRadius, ...style }}
       aria-hidden="true"
+      data-disabled={disabled}
     />
   );
 }

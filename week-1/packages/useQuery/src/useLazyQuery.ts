@@ -1,13 +1,18 @@
-import { useCallback, useState } from "react";
+import { useLazyQueryExecution } from "./hooks/useLazyQueryExecution";
 import { useQueryRequest } from "./hooks/useQueryRequest";
-import type { QueryOptions, QueryResult } from "./types";
+import type { LazyQueryResult, QueryOptions } from "./types";
 
-export function useLazyQuery<Data = unknown>(
-  options: QueryOptions<Data>,
-): [execute: () => void, result: QueryResult<Data>] {
-  const [executionCount, setExecutionCount] = useState<number | null>(null);
-  const execute = useCallback(() => setExecutionCount((previous) => (previous ?? 0) + 1), []);
-  const result = useQueryRequest(options, executionCount);
+export function useLazyQuery<Data = unknown>(options: QueryOptions<Data>): LazyQueryResult<Data> {
+  const { request, execute, cancel } = useLazyQueryExecution(options);
+  const result = useQueryRequest<Data>(
+    {
+      ...(request?.options ?? options),
+      onSuccess: (data) => options.onSuccess?.(data),
+      onError: (error) => options.onError?.(error),
+    },
+    request?.executionCount ?? null,
+    request?.resolve,
+  );
 
-  return [execute, result];
+  return [execute, result, cancel];
 }

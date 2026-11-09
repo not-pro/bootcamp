@@ -3,3 +3,6 @@
   min-height: 0;
   color: var(--color-text);
 }
+.root[inert] {
+  opacity: 0.6;
+}

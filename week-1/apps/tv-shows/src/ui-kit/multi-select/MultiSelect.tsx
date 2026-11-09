@@ -6,6 +6,8 @@ import { useMultiSelectOpen } from "./hooks/useMultiSelectOpen";
 import { useMultiSelectHandlers } from "./hooks/useMultiSelectHandlers";
 import styles from "./MultiSelect.module.css";
 
+export type { Option, MultiSelectProps } from "./types";
+
 /**
  * Множественный выбор: стрелки/Home/End перемещают фокус, Escape закрывает меню.
  * @example

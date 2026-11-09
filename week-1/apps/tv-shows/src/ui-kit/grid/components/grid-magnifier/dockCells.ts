@@ -1,5 +1,6 @@
 import type { Geometry } from "./types";
-import { dockCount, DOCK_THRESHOLD, WAVE_RADIUS } from "./dockConfig";
+import { dockCount } from "./dockCount";
+import { DOCK_THRESHOLD, WAVE_RADIUS } from "./dockConfig";
 
 export function dockCells(geometry: Geometry, x: number, y: number, focused?: number) {
   const { rows, fullerItems, wideSpan, narrowSpan } = geometry;

@@ -23,7 +23,7 @@
   border-radius: 10px;
   cursor: pointer;
 }
-.option:hover {
+.option:hover:not(:has(input:disabled)) {
   background: var(--color-surface-hover);
 }
 .option input {
@@ -39,4 +39,11 @@
   .option input:focus-visible {
     outline-color: Highlight;
   }
+}
+.option:has(input:disabled) {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.option input:disabled {
+  cursor: not-allowed;
 }

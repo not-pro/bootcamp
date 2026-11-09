@@ -34,3 +34,7 @@ button.card {
   inset: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.96) 100%);
 }
+.card:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

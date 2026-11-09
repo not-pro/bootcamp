@@ -22,3 +22,6 @@
     gap: 12px;
   }
 }
+.catalog[inert] {
+  opacity: 0.6;
+}

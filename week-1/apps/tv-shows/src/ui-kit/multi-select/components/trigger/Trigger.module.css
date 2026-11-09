@@ -11,8 +11,8 @@
   font: inherit;
   cursor: pointer;
 }
-.trigger:hover,
-.trigger[aria-expanded="true"] {
+.trigger:hover:not(:disabled),
+.trigger[aria-expanded="true"]:not(:disabled) {
   background: var(--color-surface-hover);
 }
 .trigger:disabled {

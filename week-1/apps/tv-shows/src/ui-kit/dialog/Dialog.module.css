@@ -38,3 +38,10 @@
   line-height: 1.65;
   overflow-wrap: anywhere;
 }
+.header button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.body[inert] {
+  opacity: 0.6;
+}

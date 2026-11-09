@@ -71,3 +71,6 @@
     --motion-duration: 0s;
   }
 }
+.layout[inert] {
+  opacity: 0.6;
+}

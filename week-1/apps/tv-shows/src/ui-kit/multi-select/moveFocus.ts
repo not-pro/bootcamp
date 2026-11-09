@@ -1,5 +1,3 @@
-import type { RefObject } from "react";
-
 export function moveFocus(root: HTMLElement | null, key: string) {
   const inputs = Array.from(root?.querySelectorAll<HTMLInputElement>("input:not(:disabled)") ?? []);
   if (!inputs.length) return;
@@ -13,11 +11,4 @@ export function moveFocus(root: HTMLElement | null, key: string) {
   if (key === "ArrowDown") next = (current + 1) % inputs.length;
   if (key === "ArrowUp") next = (current <= 0 ? inputs.length : current) - 1;
   inputs[next]?.focus();
-}
-
-export function focusInitial(root: RefObject<HTMLElement | null>, last: boolean) {
-  requestAnimationFrame(() => {
-    const inputs = root.current?.querySelectorAll<HTMLInputElement>("input:not(:disabled)");
-    inputs?.[last ? inputs.length - 1 : 0]?.focus();
-  });
 }

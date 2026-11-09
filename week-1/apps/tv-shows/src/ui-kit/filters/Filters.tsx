@@ -1,24 +1,16 @@
-import type { ReactNode } from "react";
+import type { FiltersProps } from "./types";
 import styles from "./Filters.module.css";
 
-/** Параметры группы фильтров. */
-export type FiltersProps = {
-  /** Элементы управления фильтрами. Их значения контролирует вызывающий код. */
-  children: ReactNode;
-  /** Подпись группы; без значения legend не отображается. */
-  legend?: string;
-  /** Нажатие «Сбросить». Без обработчика кнопка не отображается. */
-  onReset?: () => void;
-};
+export type { FiltersProps } from "./types";
 
 /**
  * Семантическая группа фильтров с необязательной кнопкой сброса.
  * @example
  * <Filters legend="Фильтры" onReset={resetFilters}>{controls}</Filters>
  */
-export function Filters({ children, legend, onReset }: FiltersProps) {
+export function Filters({ children, legend, onReset, disabled }: FiltersProps) {
   return (
-    <fieldset className={styles["filters"]}>
+    <fieldset className={styles["filters"]} disabled={disabled}>
       {legend && <legend className={styles["legend"]}>{legend}</legend>}
       <div className={styles["content"]}>
         {children}
