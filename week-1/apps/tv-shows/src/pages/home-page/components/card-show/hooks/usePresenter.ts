@@ -1,13 +1,13 @@
 import { useCallback, useMemo } from "react";
-import { stripHtml } from "../stripHtml";
-import { useProgressiveImage } from "./useProgressiveImage";
 import type { Show } from "../types";
 
-export function usePresenter(show: Show) {
-  const { currentSrc, originalSrc, isLoaded, onOriginalLoad } = useProgressiveImage(show.image);
-  const onClick = useCallback(() => {}, []);
+const PLACEHOLDER_IMAGE =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
-  const description = useMemo(() => (show.summary ? stripHtml(show.summary) : ""), [show.summary]);
+export function usePresenter(show: Show) {
+  const onClick = useCallback(() => {
+    window.open(show.url, "_blank", "noopener,noreferrer");
+  }, [show.url]);
 
   const meta = useMemo(() => {
     if (show.genres.length > 0) {
@@ -20,12 +20,8 @@ export function usePresenter(show: Show) {
   }, [show.genres, show.rating.average]);
 
   return {
-    currentSrc,
-    originalSrc,
-    isLoaded,
-    onOriginalLoad,
+    currentSrc: show.image?.original ?? show.image?.medium ?? PLACEHOLDER_IMAGE,
     onClick,
-    description,
     meta,
   };
 }

@@ -5,13 +5,11 @@
   --gap-x: min(5px, calc(30cqw / var(--active-column-count)));
   --gap-y: min(5px, calc(30cqh / var(--active-rows)));
   position: relative;
-  left: calc(var(--gap-x) / -2);
-  top: calc(var(--gap-y) / -2);
   display: flex;
   flex-wrap: wrap;
   align-content: stretch;
-  width: calc(100% + var(--gap-x));
-  height: calc(100% + var(--gap-y));
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   list-style: none;

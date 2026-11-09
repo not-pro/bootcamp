@@ -21,16 +21,3 @@
   color: var(--color-muted);
   max-width: 36ch;
 }
-.empty button {
-  min-height: 44px;
-  border: 0;
-  border-radius: var(--radius-control);
-  padding: 10px 20px;
-  color: var(--color-text);
-  background: var(--color-surface);
-  cursor: pointer;
-}
-.empty button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}

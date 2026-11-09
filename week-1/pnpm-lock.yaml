@@ -173,9 +173,6 @@ catalogs:
     '@vitejs/plugin-react':
       specifier: ^6.2.1
       version: 6.2.1
-    animejs:
-      specifier: 4.5.0
-      version: 4.5.0
     husky:
       specifier: ^9.1.7
       version: 9.1.7
@@ -217,9 +214,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: 'catalog:'
         version: 6.2.1(@voidzero-dev/vite-plus-core@1.5.0(@types/node@26.6.6)(typescript@7.0.2))
-      animejs:
-        specifier: 'catalog:'
-        version: 4.5.0
       react:
         specifier: 'catalog:'
         version: 19.3.1
@@ -996,17 +990,6 @@ packages:
 
   '@yuku-toolchain/types@0.19.0':
     resolution: {integrity: sha512-tFkNbsP4WXX9UMUC5syJGdK9dPMLK0PPaIuXCcCYH75sZ8MrebfBZ2XvCILRTw8AgLivSSCfDa4R67iYBDa4Kg==}
-
-  animejs@4.5.0:
-    resolution: {integrity: sha512-NQimYX+lz8WaXonGS9zVVoviCIAjONeJayxacUditaivYLqyXgGjFKjuyl0aUUhFKm5MriX9ty1TGovNzoJQWA==}
-    peerDependencies:
-      '@types/three': '>=0.150.0'
-      three: '>=0.150.0'
-    peerDependenciesMeta:
-      '@types/three':
-        optional: true
-      three:
-        optional: true
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -1892,8 +1875,6 @@ snapshots:
     optional: true
 
   '@yuku-toolchain/types@0.19.0': {}
-
-  animejs@4.5.0: {}
 
   ansi-regex@5.0.1: {}
 

@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useRef } from "react";
+import { startTransition, useCallback, useLayoutEffect, useRef } from "react";
 import type { GridPaginationProps } from "../Grid";
 
 export function useGridPagination(pagination?: GridPaginationProps, disabled = false) {
@@ -19,8 +19,10 @@ export function useGridPagination(pagination?: GridPaginationProps, disabled = f
   const change = useCallback(
     (direction: number) => {
       if (disabled || !pagination || pagination.isLoading) return;
-      if (direction > 0 && pagination.hasNextPage) pagination.onNextPage();
-      if (direction < 0 && pagination.hasPreviousPage) pagination.onPreviousPage();
+      startTransition(() => {
+        if (direction > 0 && pagination.hasNextPage) pagination.onNextPage();
+        if (direction < 0 && pagination.hasPreviousPage) pagination.onPreviousPage();
+      });
     },
     [pagination, disabled],
   );

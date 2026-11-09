@@ -9,6 +9,10 @@ export type HomePageState = {
   setShows: (shows: Show[]) => void;
   isSearchPending: boolean;
   setIsSearchPending: (value: boolean) => void;
+  hasSearchError: boolean;
+  setHasSearchError: (value: boolean) => void;
+  retryCount: number;
+  retrySearch: () => void;
   resetAll: () => void;
 };
 

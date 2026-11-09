@@ -10,6 +10,8 @@ export type UseSearchResultsOptions = {
   query: string;
   setShows: (shows: Show[]) => void;
   setIsSearchPending: (value: boolean) => void;
+  setHasSearchError: (value: boolean) => void;
+  retryCount: number;
 };
 
 export type UseSearchReturn = {

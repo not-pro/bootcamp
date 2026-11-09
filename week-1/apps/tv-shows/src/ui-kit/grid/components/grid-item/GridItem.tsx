@@ -7,7 +7,6 @@ type Props = {
   desktopSpan: number;
   tabletSpan: number;
   mobileSpan: number;
-  dense: boolean;
 };
 
 export const GridItem = memo(function GridItem({
@@ -15,19 +14,13 @@ export const GridItem = memo(function GridItem({
   desktopSpan,
   tabletSpan,
   mobileSpan,
-  dense,
 }: Props) {
   const style: CSSProperties & Record<`--${string}`, number> = useMemo(
     () => ({ "--span": desktopSpan, "--tablet-span": tabletSpan, "--mobile-span": mobileSpan }),
     [desktopSpan, tabletSpan, mobileSpan],
   );
   return (
-    <ViewTransition
-      default={dense ? "none" : "catalog-card"}
-      enter={dense ? "none" : "card-enter"}
-      exit={dense ? "none" : "card-exit"}
-      update={dense ? "none" : "card-update"}
-    >
+    <ViewTransition default="catalog-card" enter="card-enter" exit="card-exit" update="card-update">
       <li className={styles["item"]} style={style}>
         {children}
       </li>

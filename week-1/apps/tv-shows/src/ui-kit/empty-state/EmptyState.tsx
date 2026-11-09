@@ -8,7 +8,7 @@ export type { EmptyStateProps } from "./types";
  * @example
  * <EmptyState title="Ничего не найдено" onReset={resetAll}>Измените поиск.</EmptyState>
  */
-export function EmptyState({ title, children /* onReset , disabled */ }: EmptyStateProps) {
+export function EmptyState({ title, children, action }: EmptyStateProps) {
   return (
     <section className={styles["empty"]} aria-live="polite">
       <span className={styles["symbol"]} aria-hidden="true">
@@ -16,9 +16,7 @@ export function EmptyState({ title, children /* onReset , disabled */ }: EmptySt
       </span>
       <h2>{title}</h2>
       <p>{children}</p>
-      {/*<button type="button" disabled={disabled} onClick={onReset}>
-        Сбросить поиск и фильтры
-      </button>*/}
+      {action}
     </section>
   );
 }

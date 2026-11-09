@@ -1,5 +1,6 @@
 export type Show = {
   id: number;
+  url: string;
   name: string;
   genres: string[];
   premiered: string | null;

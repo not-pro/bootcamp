@@ -9,16 +9,28 @@
   padding: 0;
   border: 0;
   border-radius: min(var(--radius-card), 12%);
+  appearance: none;
+  clip-path: inset(0 round min(var(--radius-card), 12%));
   background: var(--color-surface);
   color: var(--color-text);
   text-align: left;
   text-decoration: none;
+  transform: scale(1);
+  transform-origin: center center;
+  transition: transform 0.25s ease;
   container-type: size;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
 }
 button.card {
   cursor: pointer;
 }
+.card:hover,
 .card:focus-visible {
+  transform: scale(1.05);
   outline: 3px solid var(--color-focus);
   outline-offset: -2px;
 }
@@ -33,6 +45,10 @@ button.card {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.96) 100%);
+}
+.card[data-image-state="loading"] .image,
+.card[data-image-state="error"] .image {
+  opacity: 0;
 }
 .card:disabled {
   opacity: 0.6;

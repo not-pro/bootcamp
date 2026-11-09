@@ -1,5 +1,7 @@
 import { memo } from "react";
 import type { CardProps } from "./types";
+import { ImagePlaceholder } from "./components/image-placeholder/ImagePlaceholder";
+import { useImageLoading } from "./hooks/useImageLoading";
 import styles from "./Card.module.css";
 import contentStyles from "./CardContent.module.css";
 
@@ -21,6 +23,7 @@ export const Card = memo(function Card({
   disabled,
 }: CardProps) {
   const label = [title, meta].filter(Boolean).join(", ");
+  const { status, imageRef, onLoad, onError } = useImageLoading(image);
   return (
     <button
       className={styles["card"]}
@@ -28,15 +31,23 @@ export const Card = memo(function Card({
       disabled={disabled}
       onClick={onClick}
       aria-label={label}
+      aria-busy={status === "loading"}
+      data-image-state={status}
       title={label}
     >
       <img
+        key={image}
+        ref={imageRef}
         className={styles["image"]}
         src={image}
         alt={imageAlt}
         decoding="async"
+        loading="lazy"
         draggable={false}
+        onLoad={onLoad}
+        onError={onError}
       />
+      {status === "loading" && <ImagePlaceholder />}
       <span className={styles["overlay"]} />
       <span className={contentStyles["content"]}>
         {eyebrow && <span className={contentStyles["eyebrow"]}>{eyebrow}</span>}

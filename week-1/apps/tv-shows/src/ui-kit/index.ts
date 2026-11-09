@@ -1,4 +1,5 @@
 export * from "./app-layout/AppLayout";
+export * from "./button/Button";
 export * from "./card/Card";
 export * from "./catalog-layout/CatalogLayout";
 export * from "./dialog/Dialog";

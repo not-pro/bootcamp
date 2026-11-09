@@ -1,11 +1,12 @@
-import { EmptyState, Grid, Skeleton } from "@ui-kit";
+import { Button, EmptyState, Grid, Skeleton } from "@ui-kit";
 import { CardShow } from "../card-show/CardShow";
 import { usePresenter } from "./hooks/usePresenter";
 
 const SKELETON_COUNT = 3;
 
 export function Content() {
-  const { shows, isSearchPending, resetAll } = usePresenter();
+  const { shows, isSearchPending, hasSearchError, retrySearch, resetAll, pagination } =
+    usePresenter();
 
   if (isSearchPending) {
     return (
@@ -14,6 +15,18 @@ export function Content() {
           <Skeleton key={index} height="100%" borderRadius={24} />
         ))}
       </Grid>
+    );
+  }
+
+  if (hasSearchError) {
+    return (
+      <EmptyState
+        title="Не удалось выполнить поиск"
+        // oxlint-disable-next-line react-perf/jsx-no-jsx-as-prop
+        action={<Button onClick={retrySearch}>Повторить запрос</Button>}
+      >
+        Произошла ошибка при поиске. Попробуйте ещё раз.
+      </EmptyState>
     );
   }
 
@@ -26,7 +39,7 @@ export function Content() {
   }
 
   return (
-    <Grid label="Сериалы">
+    <Grid label="Сериалы" pagination={pagination}>
       {shows.map((show) => (
         <CardShow key={show.id} show={show} />
       ))}

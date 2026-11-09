@@ -29,10 +29,12 @@ export function GridViewport({
   return (
     <section className={`${styles["root"]} ${className ?? ""}`} aria-label={label} inert={disabled}>
       <p id={instructionsId} className={styles["hint"]}>
+        {pagination?.totalCount !== undefined &&
+          `Показано ${items.length} из ${pagination.totalCount} · `}
         {pagination?.isLoading
           ? "Загрузка…"
           : pagination?.hasNextPage
-            ? "Прокручивайте вниз, чтобы увидеть больше историй ↓"
+            ? "Прокручивайте вниз, чтобы увидеть больше сериалов ↓"
             : pagination?.hasPreviousPage
               ? "Прокручивайте вверх, чтобы вернуться ↑"
               : "Все доступные истории показаны"}
