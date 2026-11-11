@@ -4,7 +4,8 @@ import styles from "./Trigger.module.css";
 type Props = {
   triggerRef: RefObject<HTMLButtonElement | null>;
   label: string;
-  count: number;
+  options: readonly { value: string; label: string }[];
+  value: readonly string[];
   disabled: boolean | undefined;
   open: boolean;
   menuId: string;
@@ -16,7 +17,8 @@ type Props = {
 export function Trigger({
   triggerRef,
   label,
-  count,
+  options,
+  value,
   disabled,
   open,
   menuId,
@@ -24,6 +26,12 @@ export function Trigger({
   onKeyDown,
   onBlur,
 }: Props) {
+  const selectedLabels = options
+    .filter((option) => value.includes(option.value))
+    .map((option) => option.label);
+
+  const displayText = selectedLabels.length > 0 ? selectedLabels.join(", ") : label;
+
   return (
     <button
       ref={triggerRef}
@@ -37,8 +45,8 @@ export function Trigger({
       onKeyDown={onKeyDown}
       onBlur={onBlur}
     >
-      {label}
-      {count > 0 && <span className={styles["count"]}> {count}</span>}
+      {displayText}
+      {value.length > 0 && <span className={styles["count"]}> ({value.length})</span>}
       <span aria-hidden="true" className={styles["chevron"]}>
         ⌄
       </span>

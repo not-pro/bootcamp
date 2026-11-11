@@ -30,7 +30,8 @@ export function MultiSelect({ label, options, value, onChange, disabled }: Multi
       <Trigger
         triggerRef={triggerRef}
         label={label}
-        count={value.length}
+        options={options}
+        value={value}
         disabled={disabled}
         open={open}
         menuId={menuId}
