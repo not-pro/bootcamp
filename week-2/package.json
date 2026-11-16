@@ -1,0 +1,26 @@
+{
+  "name": "tv-shows",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "ready": "vp run check:lines && vp check && vp run -r test && vp run -r build",
+    "dev": "vp run website#dev",
+    "check:lines": "node scripts/check-lines.mjs",
+    "prepare": "cd .. && week-1/node_modules/.bin/husky week-1/.husky"
+  },
+  "devDependencies": {
+    "husky": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.18.0",
+      "onFail": "download"
+    }
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}

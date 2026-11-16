@@ -3,6 +3,7 @@
 Bootcamp Simple Architecture repo divided by weeks
 
 - [Week 1](week-1/)
+- [Week 2](week-2/)
 
 [TV Shows — live app](https://not-pro.github.io/bootcamp/)
 

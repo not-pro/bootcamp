@@ -1,0 +1,2 @@
+cd week-1 || exit 1
+node_modules/.bin/vp check
