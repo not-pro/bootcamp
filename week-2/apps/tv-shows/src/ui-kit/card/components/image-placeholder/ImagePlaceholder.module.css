@@ -1,0 +1,61 @@
+.placeholder {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 45% 40%, #121416, #08090b 80%);
+  color: #85888d;
+  pointer-events: none;
+}
+.drawing {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.3);
+}
+.drawing > path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: scribble 4.7s ease-in-out infinite both;
+}
+.drawing > path:nth-of-type(2n) {
+  animation-duration: 6.1s;
+  animation-delay: -2.8s;
+  stroke-width: 1.5;
+}
+.drawing > path:nth-of-type(3n) {
+  animation-duration: 3.9s;
+  animation-delay: -1.6s;
+}
+.drawing > path:nth-of-type(4n) {
+  animation-duration: 7.3s;
+  animation-delay: -5.2s;
+  stroke-width: 3.3;
+}
+.drawing > path:nth-of-type(5n) {
+  animation-duration: 5.3s;
+  animation-delay: -3.9s;
+}
+@keyframes scribble {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.4;
+  }
+  62% {
+    stroke-dashoffset: 0;
+    opacity: 0.45;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .drawing > path {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 0.15;
+  }
+}

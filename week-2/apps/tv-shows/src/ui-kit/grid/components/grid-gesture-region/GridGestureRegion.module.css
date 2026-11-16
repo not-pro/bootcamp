@@ -1,0 +1,7 @@
+.viewport {
+  flex: 1;
+  min-height: 0;
+  overflow: clip;
+  container-type: size;
+  touch-action: pinch-zoom;
+}
